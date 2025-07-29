@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "github.com/flotio-dev/user-service/userpb";
+
+// User message definition
+message User {
+  int64 id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+// Request message for getting a user by id
+message GetUserRequest {
+  int64 id = 1;
+}
+
+// Response containing a User
+message GetUserResponse {
+  User user = 1;
+}
+
+// Request message for creating a user
+message CreateUserRequest {
+  User user = 1;
+}
+
+// Response containing the created user
+message CreateUserResponse {
+  User user = 1;
+}
+
+// The User service definition
+service UserService {
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+}
